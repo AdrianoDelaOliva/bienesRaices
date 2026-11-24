@@ -34,10 +34,14 @@
         justify-content: space-between;
     }
     &.fija {
+    @include tablet {
+        gap: 21.8rem;
+        padding: 3.6rem 2rem;
+    }
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 21.8rem;
+    
     position: fixed;
     top: 0;
     left: 0;
@@ -86,7 +90,9 @@
         }
         &.active {
             color: $verde;
-            border-bottom: 2px solid $verde;
+            @include tablet {
+                border-bottom: 2px solid $verde;
+            }
             padding-bottom: 5px;
         }
     }
