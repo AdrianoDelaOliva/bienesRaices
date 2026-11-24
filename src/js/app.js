@@ -3,7 +3,6 @@ document.addEventListener( 'DOMContentLoaded' , function() {
 
     darkmode();
 
-
 })
 
 function darkmode() {
@@ -38,7 +37,20 @@ function eventListeners() {
     //Muestra capos condicionales
     const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"]');
     metodoContacto.forEach(input => input.addEventListener('click', mostrarMetodo));
-
+    
+    const barra = document.querySelector('.barra');
+    const contenedor = document.querySelector('.barra-contenedor');
+    window.addEventListener('scroll', ()=> {
+        if (window.scrollY > 112) {
+            if (!barra.classList.contains('fija')) {
+                contenedor.style.height = `${barra.offsetHeight}px`;
+                barra.classList.add('fija');
+            }
+        } else {
+                barra.classList.remove('fija');
+                contenedor.style.height = '';
+        }
+    });
 }
 
 
@@ -73,3 +85,4 @@ function mostrarMetodo(e) {
         
     }
 }
+

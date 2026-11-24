@@ -15,9 +15,11 @@
                     25 años de experiencia
                 </blockquote>
 
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur voluptatibus facere soluta eius omnis? Possimus a eveniet quasi minus, aut iusto velit dignissimos, totam autem, cumque asperiores repudiandae odit doloribus!</p>
+                <p>En Bienes Raíces, nos dedicamos a conectar a las personas con propiedades que se adapten a sus necesidades, estilo de vida y expectativas. Ofrecemos una selección de casas y departamentos que destacan por su calidad, diseño, comodidad y ubicación.
+                </p>
+                
+                <p>Nuestro compromiso es acompañarte durante cada etapa del proceso inmobiliario, brindándote confianza, transparencia y atención personalizada. Sabemos que adquirir una propiedad es una de las decisiones más importantes de tu vida, por eso trabajamos para que encuentres el lugar ideal donde construir tu futuro.</p>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, repellat ad cupiditate asperiores voluptatem quisquam in soluta nemo odio error, eveniet fuga inventore corporis nulla pariatur ullam. Cupiditate, repudiandae debitis.</p>
             </div>
         </div>
     </main>

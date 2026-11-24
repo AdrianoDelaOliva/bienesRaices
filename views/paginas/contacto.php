@@ -11,10 +11,8 @@
         <?php 
             if($mensaje) { ?>
                 <p class="alerta exito"><?php echo $mensaje; ?></p>
-        <?php } ?>
+        <?php } 
            
-        
-        
         ?>
         <form action="/contacto" class="formulario" method="POST">
             <fieldset>

@@ -36,35 +36,39 @@
 <body>
     <header class="header <?php echo $inicio ? 'inicio' : 'vacio'; ?>">
         <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="/">
-                    <img src="/build/img/logo.svg" alt="Logo bienes raices">
-                </a>
-                
-                 <div class="mobile-menu">
-                    <img src="/build/img/barras.svg" alt="icono menu responsive">
-                </div>
-                <div class="derecha">
-                    <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt=" icono dark mode">
+            <div class="barra-contenedor">
 
-                    <nav class="navegacion">
-                    <?php if ($auth): ?>
-                        <a href="/admin">Panel de Administración</a>
+                <div class="barra">
+                    <a href="/">
+                        <img src="/build/img/logo.svg" alt="Logo bienes raices">
+                    </a>
+                    
+                    <div class="mobile-menu">
+                        <img src="/build/img/barras.svg" alt="icono menu responsive">
+                    </div>
+                    <div class="derecha">
+                        <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt=" icono dark mode">
+                        
+                        <nav class="navegacion">
+                            <?php if ($auth): ?>
+                                <a href="/admin" class="<?php echo $urlActual === '/admin' ? 'active' : ''; ?>">Panel de Administración</a>
                     <?php endif; ?>
-                        <a href="/nosotros">Nosotros</a>
-                        <a href="/propiedades">Propiedades</a>
-                        <a href="/blog">Blog</a>
-                        <a href="/contacto">Contacto</a>
+                    <a href="/nosotros" class="<?php echo $urlActual === '/nosotros' ? 'active' : ''; ?>">Nosotros</a>
+                    
+                    <a href="/propiedades" class="<?php echo $urlActual === '/propiedades' ? 'active' : ''; ?>">Propiedades</a>
+                    <a href="/blog" class="<?php echo $urlActual === '/blog' ? 'active' : ''; ?>">Blog</a>
+                    <a href="/contacto" class="<?php echo $urlActual === '/contacto' ? 'active' : ''; ?>">Contacto</a>
                     <?php if ($auth): ?>
                         <a href="/logout">Cerrar Sesión</a>
-                    <?php endif; ?>
-                    <?php if (!$auth): ?>
-                        <a href="/login">Iniciar Sesión</a>
-                    <?php endif; ?>
-                    </nav>
-
-                </div>
-            </div> <!--Cierre de barra-->
+                        <?php endif; ?>
+                        <?php if (!$auth): ?>
+                            <a href="/login">Iniciar Sesión</a>
+                            <?php endif; ?>
+                        </nav>
+                        
+                    </div>
+                </div> <!--Cierre de barra-->
+            </div>
             <?php echo $inicio ? "<h1>Venta de Casas y Departamentos exclusivos de lujo</h1>" : '';?>
         </div>
     </header>
