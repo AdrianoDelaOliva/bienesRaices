@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="texto-entrada">
-                    <a href="/entrada">
+                    <a href="/entrada?id=<?php echo $blog->id;?>">
                         <h4><?php echo $blog->titulo; ?></h4>
                         <p class="informacion-meta">Escrito el: <span><?php echo $blog->fecha; ?></span> por <span><?php
                                 foreach ($vendedores as $vendedor) {
