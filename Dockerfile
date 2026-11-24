@@ -42,6 +42,14 @@ RUN printf '<VirtualHost *:80>\n\
     </Directory>\n\
 </VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+RUN composer dump-autoload --optimize --no-dev
+
+RUN test -f /var/www/html/vendor/autoload.php
+
 RUN mkdir -p /var/www/html/public/imagenes \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R u=rwX,go=rX /var/www/html
