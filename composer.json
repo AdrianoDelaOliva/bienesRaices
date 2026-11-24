@@ -1,0 +1,22 @@
+{
+    "name": "pc/bienesraices_inicio",
+    "description": "Creando un proyecto con POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "jiczoz",
+            "email": "adrianojdelaoliva@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^4.4",
+        "phpmailer/phpmailer": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\":  "./models",
+            "MVC\\": "./",
+            "Controllers\\": "./controllers"
+        }
+    }
+}

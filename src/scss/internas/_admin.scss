@@ -1,0 +1,51 @@
+.alerta {
+    padding: 0.5rem;
+    margin: 1rem 0;
+    color: $blanco;
+
+    text-align: center;
+    font-weight: $bold;
+    text-transform: uppercase;
+    
+    &.error {
+        background-color: $rojo;
+    }
+    &.exito {
+        background-color: $verde;
+    }
+}
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+table.propiedades {
+    margin-top: 4rem;
+    width: 100%;
+    border-spacing: 0;
+    
+    thead {
+        background-color: $verde;
+        th {
+            color: $blanco;
+            padding: 2rem;
+
+        }
+    }
+    tbody {
+        td {
+            padding: 2rem;
+            text-align: center;
+        }
+    }
+
+    .imagen-tabla {
+        width: 10rem;
+    }
+}
+
+.imagen-small {
+    width: 20rem;
+    border-radius: 0.8rem;
+    margin-bottom: 2rem;
+}
