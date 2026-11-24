@@ -4,9 +4,10 @@
   "description": "Curso Desarrollo Web Completo",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "gulp"
+  "dev": "gulp",
+  "build": "gulp build"
   },
-  "author": "Juan De La Torre",
+  "author": "Adriano De la Oliva",
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^5.1.0",
@@ -25,5 +26,9 @@
     "gulp-webp": "^4.0.1",
     "sass": "^1.49.9",
     "terser": "^4.8.0"
+  },
+  "dependencies": {
+    "@neon/config": "^1.14.6",
+    "@neon/env": "^2.1.9"
   }
 }

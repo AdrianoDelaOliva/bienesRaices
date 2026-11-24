@@ -65,4 +65,9 @@ function watchArchivos() {
 
 exports.css = css;
 exports.watchArchivos = watchArchivos;
-exports.default = parallel(css, javascript, imagenes, versionWebp, watchArchivos); 
+
+// Compilación para producción
+exports.build = parallel(css, javascript, imagenes, versionWebp);
+
+// Entorno de desarrollo
+exports.default = parallel(css, javascript, imagenes, versionWebp, watchArchivos);

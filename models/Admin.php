@@ -2,63 +2,98 @@
 
 namespace Model;
 
-use Override;
+use PDO;
 
 class Admin extends ActiveRecord {
-    // Base de datos
+
     protected static $tabla = 'usuarios';
-    protected static $columnasDB = ['id', 'email', 'password'];
+
+    protected static $columnasDB = [
+        'id',
+        'email',
+        'password'
+    ];
 
     public $id;
     public $email;
     public $password;
 
-    public function __construct($args=[])
+    public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
-
-
     }
 
-    public function validar(){
+    public function validar() {
+
+        static::$errores = [];
+
         if (!$this->email) {
-            self::$errores[] = "Ingrese su email";
-        } 
+            static::$errores[] = "Ingrese su email";
+        } else if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            static::$errores[] = "El correo no es válido";
+        }
+
         if (!$this->password) {
-            self::$errores[] = "La contraseña es obligatoria";
-        } 
+            static::$errores[] = "La contraseña es obligatoria";
+        }
 
-        return self::$errores;
+        return static::$errores;
     }
+
     public function existeUsuario() {
-        //revisar si un usuario existe o no
-        $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
-        $resultado = self::$db->query($query);
 
-        if(!$resultado->num_rows) {
-            self::$errores[] = 'El usuario no existe';
-            return;
+        $query = "SELECT * FROM " . static::$tabla;
+        $query .= " WHERE email = :email LIMIT 1";
+
+        $stmt = self::$db->prepare($query);
+
+        $stmt->execute([
+            'email' => $this->email
+        ]);
+
+        $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+        if (!$usuario) {
+            static::$errores[] = "El usuario no existe";
+            return false;
         }
-        return $resultado;
+
+        return $usuario;
     }
+
     public function comprobarPassword($resultado) {
-        $usuario = $resultado->fetch_object();
-        $autenticado = password_verify($this->password, $usuario->password);
-        if (!$autenticado) {
-            self::$errores[] = "La contraseña es incorrecta";
-            return;
+
+        if (!$resultado || !isset($resultado->password)) {
+            return false;
         }
-        return $autenticado;
+
+        $autenticado = password_verify(
+            $this->password,
+            $resultado->password
+        );
+
+        if (!$autenticado) {
+            static::$errores[] = "La contraseña es incorrecta";
+            return false;
+        }
+
+        return true;
     }
+
     public function autenticar() {
-        session_start();
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        session_regenerate_id(true);
 
         $_SESSION['usuario'] = $this->email;
         $_SESSION['login'] = true;
 
-        header ('Location:/admin');
-        
+        header('Location: /admin');
+        exit;
     }
 }
