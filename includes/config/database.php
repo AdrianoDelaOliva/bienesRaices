@@ -1,9 +1,16 @@
 <?php
 function conectarDB(): PDO
 {
-    $env = parse_ini_file(__DIR__ . '/../../.env.local');
+    $url = getenv('DATABASE_URL');
 
-    $url = $env['DATABASE_URL'] ?? null;
+    if (!$url) {
+        $ruta = __DIR__ . '/../../.env.local';
+    
+        if (is_file($ruta)) {
+            $env = parse_ini_file($ruta);
+            $url = $env['DATABASE_URL'] ?? null;
+        }
+    }
 
     if (!$url) {
         throw new RuntimeException('DATABASE_URL no configurada');
