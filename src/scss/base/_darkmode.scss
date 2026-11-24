@@ -76,24 +76,24 @@
 }
 
 @keyframes aparecerMensaje {
-    from {
-        transform: translateX(100%);
+    0% {
+        transform: translateX(20%);
         opacity: 0;
     }
 
-    to {
+    100% {
         transform: translateX(0);
         opacity: 1;
     }
 }
 @keyframes desaparecerMensaje {
-    from {
+    0% {
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
     }
-    to {
-        transform: translateX(100%);
+    100% {
+        transform: translateX(20%);
         opacity: 0;
         visibility: hidden;
     }
