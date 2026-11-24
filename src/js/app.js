@@ -8,25 +8,31 @@ document.addEventListener( 'DOMContentLoaded' , function() {
 function darkmode() {
 
     const prefiereDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
-
+    const darkModeMensaje = document.querySelector('.dark-mode-mensaje');
     if (prefiereDarkMode.matches) {
         document.body.classList.add('dark-mode');
+        darkModeMensaje.classList.add('mostrar');
     } else {
         document.body.classList.remove('dark-mode');
+        darkModeMensaje.classList.remove('mostrar');
     }
-
+    
     prefiereDarkMode.addEventListener('change', function () {
         if (prefiereDarkMode.matches) {
             document.body.classList.add('dark-mode');
+            darkModeMensaje.classList.add('mostrar');
         } else {
             document.body.classList.remove('dark-mode');
+            darkModeMensaje.classList.remove('mostrar');
         }
     })
     
     const botonDarkMode = document.querySelector('.dark-mode-boton');
+    
 
     botonDarkMode.addEventListener( 'click' , function() {
         document.body.classList.toggle( 'dark-mode');
+        darkModeMensaje.classList.toggle('mostrar');
     })
 }
 function eventListeners() {
@@ -50,7 +56,7 @@ function eventListeners() {
                 barra.classList.remove('fija');
                 contenedor.style.height = '';
         }
-    });
+    });   
 }
 
 

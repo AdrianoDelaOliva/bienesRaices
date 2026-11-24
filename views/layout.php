@@ -45,11 +45,15 @@
                     
                     <div class="mobile-menu">
                         <img src="/build/img/barras.svg" alt="icono menu responsive">
+                        
                     </div>
                     <div class="derecha">
-                        <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt=" icono dark mode">
-                        
-                        <nav class="navegacion">
+                        <div class="dark-mode-contenedor">
+                            <p class="dark-mode-mensaje">Modo oscuro</p>
+                            <img class="dark-mode-boton" src="/build/img/dark-mode.svg" alt=" icono dark mode">
+                        </div>
+
+                            <nav class="navegacion">
                             <?php if ($auth): ?>
                                 <a href="/admin" class="<?php echo $urlActual === '/admin' ? 'active' : ''; ?>">Panel de Administración</a>
                     <?php endif; ?>
