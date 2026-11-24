@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
   "dev": "gulp",
-  "build": "gulp build"
+  "build": "node node_modules/gulp/bin/gulp.js build"
   },
   "author": "Adriano De la Oliva",
   "license": "ISC",
