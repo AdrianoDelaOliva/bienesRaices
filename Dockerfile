@@ -29,8 +29,10 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=frontend /app/public/build ./public/build
 
+# Habilitar las rutas de Apache
 RUN a2enmod rewrite
 
+# Configurar el directorio publico
 RUN printf '<VirtualHost *:80>\n\
     DocumentRoot /var/www/html/public\n\
     <Directory /var/www/html/public>\n\
@@ -38,10 +40,10 @@ RUN printf '<VirtualHost *:80>\n\
         AllowOverride All\n\
         Require all granted\n\
         DirectoryIndex index.php\n\
-        FallbackResource /index.php\n\
     </Directory>\n\
 </VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
 
+# Instalar dependencias PHP
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
@@ -50,11 +52,18 @@ RUN composer dump-autoload --optimize --no-dev
 
 RUN test -f /var/www/html/vendor/autoload.php
 
+# Configurar permisos
 RUN mkdir -p /var/www/html/public/imagenes \
-    && chown -R www-data:www-data /var/www/html \
-    && chmod -R u=rwX,go=rX /var/www/html
+    && chown -R www-data:www-data /var/www/html/public/imagenes \
+    && chmod -R a+rX /var/www/html
 
+# Verificar archivos necesarios
 RUN test -f /var/www/html/public/index.php
+RUN test -f /var/www/html/public/.htaccess
+RUN apache2ctl configtest
+
+# Configurar PHP para produccion
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 EXPOSE 80
 
