@@ -29,14 +29,24 @@ WORKDIR /var/www/html
 COPY . .
 COPY --from=frontend /app/public/build ./public/build
 
-RUN composer install --no-dev --optimize-autoloader
+RUN a2enmod rewrite
 
-RUN a2enmod rewrite \
-    && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
-    && printf '<Directory /var/www/html/public>\nAllowOverride All\nFallbackResource /index.php\nRequire all granted\n</Directory>\n' > /etc/apache2/conf-enabled/app.conf
+RUN printf '<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/public\n\
+    <Directory /var/www/html/public>\n\
+        Options FollowSymLinks\n\
+        AllowOverride All\n\
+        Require all granted\n\
+        DirectoryIndex index.php\n\
+        FallbackResource /index.php\n\
+    </Directory>\n\
+</VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
 
-RUN mkdir -p public/imagenes \
-    && chown -R www-data:www-data public/imagenes
+RUN mkdir -p /var/www/html/public/imagenes \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R u=rwX,go=rX /var/www/html
+
+RUN test -f /var/www/html/public/index.php
 
 EXPOSE 80
 
